@@ -1,4 +1,4 @@
-# book_management.py
+# book_management.py (corrección de error crítico)
 class Book:
     def __init__(self, title, author):
         self.title = title
@@ -9,7 +9,10 @@ class BookManager:
         self.books = []
 
     def add_book(self, book):
-        self.books.append(book)
+        if not any(b.title == book.title for b in self.books):
+            self.books.append(book)
+        else:
+            raise ValueError("El libro ya existe.")
 
     def list_books(self):
         return [f"{book.title} by {book.author}" for book in self.books]
