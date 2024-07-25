@@ -1,1 +1,21 @@
+# qa_tests.py
+import unittest
+from book_management import Book, BookManager
+
+class TestBookManager(unittest.TestCase):
+    def setUp(self):
+        self.manager = BookManager()
+
+    def test_add_book(self):
+        book = Book("El Quijote", "Cervantes")
+        self.manager.add_book(book)
+        self.assertIn(book, self.manager.books)
+
+    def test_list_books(self):
+        book = Book("El Quijote", "Cervantes")
+        self.manager.add_book(book)
+        self.assertEqual(self.manager.list_books(), ["El Quijote by Cervantes"])
+
+if __name__ == "__main__":
+    unittest.main()
 
